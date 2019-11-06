@@ -6,6 +6,31 @@ const taskRouter = require('./routers/task')
 const app = express()
 const port = process.env.PORT || 3000
 
+// const multer = require('multer')
+// const upload = multer({
+//     dest: 'images',
+//     limits: {
+//         fileSize: 1000000   // 1MB
+//     },
+//     fileFilter(req, file, cb) {
+//         if (!file.originalname.match(/\.(doc|docx)$/)) {
+//             return cb(new Error('Please upload a Word document'))
+//         }
+//         cb(undefined, true)
+
+//     }
+// })
+
+// const errorMiddleware = (req, res, next) => {
+//     throw new Error('From my middleware')
+// }
+
+// app.post('/upload', upload.single('upload'), (req, res) => {
+//     res.send()
+// }, (error, req, res, next) => {
+//     res.status(400).send({ error: error.message })
+// })
+
 // app.use((req, res, next) => {
 //     if (req.method === 'GET') {
 //         res.send('GET requests are disabled!')
@@ -24,7 +49,6 @@ app.use(taskRouter)
 
 // Without middleware: new request -> run route handler
 // With middleware: new request -> do something -> run route handler
-
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}.`)
@@ -67,7 +91,6 @@ app.listen(port, () => {
 //     const user = await User.findById('5dc0d64e5735a74110e5759e')
 //     await user.populate('tasks').execPopulate()
 //     // console.log(user.tasks)
-
 // }
 
 // main()
