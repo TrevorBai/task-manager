@@ -52,25 +52,8 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 })
 
 router.get('/users/me', auth, async (req, res) => {
-    // try {
-    //     const users = await User.find()
-    //     res.send(users)
-    // } catch (e) {
-    //     res.status(500).send()
-    // }
     res.send(req.user)
 })
-
-// router.get('/users/:id', async (req, res) => {
-//     const _id = req.params.id
-//     try {
-//         const user = await User.findById(_id)
-//         if (!user) res.status(404).send()
-//         res.send(user)
-//     } catch (e) {
-//         res.status(500).send()
-//     }
-// })
 
 router.patch('/users/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)
@@ -93,11 +76,6 @@ router.patch('/users/me', auth, async (req, res) => {
 
 router.delete('/users/me', auth, async (req, res) => {
     try {
-        // const user = await User.findByIdAndDelete(req.user._id)
-        // if (!user) {
-        //     return res.status(404).send()
-        // }
-
         await req.user.remove()
         sendCancelationEmail(req.user.email, req.user.name)
         res.send(req.user)
